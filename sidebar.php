@@ -4,8 +4,8 @@
     <ul class="sidebar-links">
         <li><a href="exhibitor_profile.php">Exhibitor Profile</a></li>
         <li><a href="exhibitor_products.php">Products / Services</a></li>
-        <li><a href="">Booth Assignments</a></li>
-        <li><a href="">Floor Plan</a></li>
+        <li><a href="">Events Agenda And Schedule</a></li>
+        <li><a href="">Floor Plan & Booth Assigned</a></li>
         <li><a href="">Add Attendee</a></li>
         <li class="logout-link">
             <form method="post" action="logout.php">

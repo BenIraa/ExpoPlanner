@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2024 at 06:17 PM
+-- Generation Time: Jan 26, 2024 at 08:08 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -103,6 +103,31 @@ CREATE TABLE `eventapp` (
   `customizations` text DEFAULT NULL,
   `push_notifications` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exhibitorproducts`
+--
+
+CREATE TABLE `exhibitorproducts` (
+  `id` int(11) NOT NULL,
+  `exhibitor_id` int(11) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_description` text DEFAULT NULL,
+  `product_image` varchar(255) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `product_creation_date` date DEFAULT NULL,
+  `product_expired_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `exhibitorproducts`
+--
+
+INSERT INTO `exhibitorproducts` (`id`, `exhibitor_id`, `product_name`, `product_description`, `product_image`, `price`, `product_creation_date`, `product_expired_date`) VALUES
+(1, 4, 'Inyange Juice 500ml Carton 12pcs\r\n', 'Inyange Juice 500ml Carton 24pcs', 'https://murukali.com/cdn/shop/files/Inyange-Juice-500ml-Carton-12pcs-murukali-com-372_1024x1024.jpg?v=1698230972', 1200.00, '2016-01-07', '2025-01-10'),
+(2, 4, 'Inyange Strawberry Yoghurt /400g', 'milk and strawberry', 'https://murukali.com/cdn/shop/files/Inyange-Strawberry-Yoghurt-400g-murukali-com-424_1200x1200.jpg?v=1698232028', 1000.00, '2023-01-07', '2025-01-29');
 
 -- --------------------------------------------------------
 
@@ -239,7 +264,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password_hash`, `role`) VALUES
 (3, 'admin', '$2y$10$lGKkpXDvDFWXA73Z1m68seo1DH7DUr7YQYhXaS9wVSN4mxvVGaTce', 'super_admin'),
-(4, 'ex', '$2y$10$k0zN2iRiZilPLkNomB4GXux0gFTgApFjNWmLiegvi0RHpd/uAtqhC', 'exhibitor'),
+(4, 'inyange', '$2y$10$k0zN2iRiZilPLkNomB4GXux0gFTgApFjNWmLiegvi0RHpd/uAtqhC', 'exhibitor'),
 (5, 'BenIraa', '$2y$10$nrsGIYiifwvtKyC2tL6df.EtX0RC.Z0UQMlsLfJKqa.ws0A/SIPWy', 'exhibitor');
 
 --
@@ -284,6 +309,13 @@ ALTER TABLE `eventanalytics`
 ALTER TABLE `eventapp`
   ADD PRIMARY KEY (`app_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `exhibitorproducts`
+--
+ALTER TABLE `exhibitorproducts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `exhibitor_id` (`exhibitor_id`);
 
 --
 -- Indexes for table `exhibitorprofiles`
@@ -352,6 +384,12 @@ ALTER TABLE `attendee`
   MODIFY `attendee_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `exhibitorproducts`
+--
+ALTER TABLE `exhibitorproducts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `exhibitorprofiles`
 --
 ALTER TABLE `exhibitorprofiles`
@@ -390,6 +428,12 @@ ALTER TABLE `booths`
 --
 ALTER TABLE `eventapp`
   ADD CONSTRAINT `eventapp_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `attendees` (`attendee_id`);
+
+--
+-- Constraints for table `exhibitorproducts`
+--
+ALTER TABLE `exhibitorproducts`
+  ADD CONSTRAINT `exhibitorproducts_ibfk_1` FOREIGN KEY (`exhibitor_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `exhibitorprofiles`
