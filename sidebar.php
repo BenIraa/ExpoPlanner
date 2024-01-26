@@ -3,7 +3,7 @@
 <div class="sidebar">
     <ul class="sidebar-links">
         <li><a href="exhibitor_profile.php">Exhibitor Profile</a></li>
-        <li><a href="">Products & Services</a></li>
+        <li><a href="exhibitor_products.php">Products / Services</a></li>
         <li><a href="">Booth Assignments</a></li>
         <li><a href="">Floor Plan</a></li>
         <li><a href="">Add Attendee</a></li>
